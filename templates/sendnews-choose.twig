@@ -1,0 +1,14 @@
+{% extends "base.twig" %} {% block title %} Selecionar Noticias - Enviar Newsletter {% endblock title %} {% block content %}
+<h1>Enviar Newsletter</h1>
+<form method="POST" action="{{path_for('sendnews-preview')}}">
+    <div class="form-check">
+      <label class="form-check-label">
+        {% for post in posts %}
+          <input type="checkbox" class="form-check-input" name="{{post.id}}" id="{{post.id}}" value="checkedValue">
+          {{post.created_at}} - {{post.title}}<br />
+        {% endfor %}
+      </label>
+    </div>
+    <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
+{% endblock content %}
