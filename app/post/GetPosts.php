@@ -9,9 +9,20 @@ class GetPosts
 
     public function __construct()
     {
+        $xml = \App\External\GetPostsExt::request();
+        
         $this->list = new ListPosts();
-        $this->list->add(MockPost::idOne());
-        $this->list->add(MockPost::idTwo());
+        foreach($xml->channel as $XMLpost){
+            $news = \Model\News::find_by_title($XMLpost->title);
+            if (empty($news)) {
+                $news = new \Model\News();
+                $news->title = $XMLpost->title;
+                $news->description = $XMLpost->description;
+                $news->save();
+                $news = \Model\News::find_by_title($XMLpost->title);
+            }
+            $this->list->add(new Post($news->id, $news->title, $news->description, $news->created_at));
+        }
     }
 
     public function getListToArray(): Array

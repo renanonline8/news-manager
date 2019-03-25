@@ -26,6 +26,21 @@ $container['view'] = function ($c) {
     return $view;
 };
 
+//Swift Mailer
+$container['mailer'] = function($c) {
+    $ini = \Utils\Config\ParseIni::parsed();
+
+    $transport = (new \Swift_SmtpTransport(
+            $ini['mailer']['smtp_url'], 
+            $ini['mailer']['smtp_port'],
+            $ini['mailer']['security']
+        ))
+        ->setUsername($ini['mailer']['username'])
+        ->setPassword($ini['mailer']['password']);
+
+    return new \Swift_Mailer($transport);
+};
+
 //Controllers
 $container['ControllerHome'] = function($c) {
     return new \App\Controller\ControllerHome($c);

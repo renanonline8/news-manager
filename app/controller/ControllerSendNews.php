@@ -35,8 +35,31 @@ final class ControllerSendNews extends Controller
             $list->add($post);
         }
 
+        $_SESSION['postsChosen'] = $list->toArray();
+
         $twigArr = array('postsChosen' => $list->toArray());
 
         return $this->view->render($response, 'sendnews-preview.twig', $twigArr);
+    }
+
+    public function send(Request $request, Response $response, Array $args)
+    {
+        $body = $request->getParsedBody();
+
+        $html = '<h1>Newsletter da Semana</h1>';
+        $html .= '<p>Sua newsletter semanal!</p>';
+        foreach($_SESSION['postsChosen'] as $post) {
+            $html .= '<p><b>' . $post['created_at'] . ' - ' . $post['title'] . '</b><br />' . $post['description'];
+        }
+
+        $message = (new \Swift_Message('Newsletter da Semana'))
+            ->setFrom(['support@renansgomes.com.br' => 'Renan Santos Gomes'])
+            ->setTo([$body['email']])
+            ->setBody($html, 'text/html');
+
+        $result = $this->mailer->send($message);
+
+        $path = $this->router->pathFor('home');
+        return $response->withRedirect($path);
     }
 }

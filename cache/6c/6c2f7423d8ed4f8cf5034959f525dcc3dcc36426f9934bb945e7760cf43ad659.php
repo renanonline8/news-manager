@@ -50,16 +50,20 @@ class __TwigTemplate_e1bf993c009f74e89021cd8d690985baf6c78633e332ef1ef0c32adf0ee
     {
         // line 2
         echo "<h1>Pre-visualização do e-mail</h1>
+<form method=\"Post\" action=\"";
+        // line 3
+        echo twig_escape_filter($this->env, $this->extensions['Slim\Views\TwigExtension']->pathFor("sendnews-send"), "html", null, true);
+        echo "\">
 <label>Mensagem:</label>
 <div class=\"border p-1\" id=\"preview\">
     <h1>Newsletter da Semana</h1>
     <p>Sua newsletter semanal!</p>
     ";
-        // line 7
+        // line 8
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(($context["postsChosen"] ?? null));
         foreach ($context['_seq'] as $context["_key"] => $context["post"]) {
-            // line 8
+            // line 9
             echo "        <p><b>";
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["post"], "created_at", []), "html", null, true);
             echo " - ";
@@ -72,18 +76,19 @@ class __TwigTemplate_e1bf993c009f74e89021cd8d690985baf6c78633e332ef1ef0c32adf0ee
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['post'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 10
+        // line 11
         echo "</div>
 <div class=\"form-group\">
   <label for=\"\">Para:</label>
-  <input type=\"text\"
-    class=\"form-control\" name=\"email\" id=\"email\" aria-describedby=\"helpId\" placeholder=\"\" value=\"michel.regis@prnewswire.com.br\" disabled>
+  <input type=\"email\"
+    class=\"form-control\" name=\"email\" id=\"email\" aria-describedby=\"helpId\" placeholder=\"\" value=\"michel.regis@prnewswire.com.br\">
 </div>
 <div class=\"btn-toolbar\" role=\"toolbar\" aria-label=\"\">
     <div class=\"btn-group\" role=\"group\" aria-label=\"\">
-        <button type=\"button\" class=\"btn btn-primary\">Enviar Newsletter</button>
+        <button type=\"submit\" class=\"btn btn-primary\">Enviar Newsletter</button>
     </div>
 </div>
+</form>
 ";
     }
 
@@ -99,13 +104,14 @@ class __TwigTemplate_e1bf993c009f74e89021cd8d690985baf6c78633e332ef1ef0c32adf0ee
 
     public function getDebugInfo()
     {
-        return array (  76 => 10,  63 => 8,  59 => 7,  52 => 2,  27 => 1,);
+        return array (  80 => 11,  67 => 9,  63 => 8,  55 => 3,  52 => 2,  27 => 1,);
     }
 
     public function getSourceContext()
     {
         return new Source("{% extends \"base.twig\" %} {% block title %} Pre-visualização do e-mail - Enviar Newsletter {% endblock title %} {% block content %}
 <h1>Pre-visualização do e-mail</h1>
+<form method=\"Post\" action=\"{{path_for('sendnews-send')}}\">
 <label>Mensagem:</label>
 <div class=\"border p-1\" id=\"preview\">
     <h1>Newsletter da Semana</h1>
@@ -116,14 +122,15 @@ class __TwigTemplate_e1bf993c009f74e89021cd8d690985baf6c78633e332ef1ef0c32adf0ee
 </div>
 <div class=\"form-group\">
   <label for=\"\">Para:</label>
-  <input type=\"text\"
-    class=\"form-control\" name=\"email\" id=\"email\" aria-describedby=\"helpId\" placeholder=\"\" value=\"michel.regis@prnewswire.com.br\" disabled>
+  <input type=\"email\"
+    class=\"form-control\" name=\"email\" id=\"email\" aria-describedby=\"helpId\" placeholder=\"\" value=\"michel.regis@prnewswire.com.br\">
 </div>
 <div class=\"btn-toolbar\" role=\"toolbar\" aria-label=\"\">
     <div class=\"btn-group\" role=\"group\" aria-label=\"\">
-        <button type=\"button\" class=\"btn btn-primary\">Enviar Newsletter</button>
+        <button type=\"submit\" class=\"btn btn-primary\">Enviar Newsletter</button>
     </div>
 </div>
+</form>
 {% endblock content %}", "sendnews-preview.twig", "C:\\xampp\\htdocs\\news-manager\\templates\\sendnews-preview.twig");
     }
 }

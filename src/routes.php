@@ -8,3 +8,4 @@ $app->get('/',  'ControllerHome:home')->setName('home');
 $app->get('/news', 'ControllerNews:list')->setName('news-list');
 $app->get('/send-news', 'ControllerSendNews:choose')->setName('sendnews-choose');
 $app->post('/send-news/preview', 'ControllerSendNews:preview')->setName('sendnews-preview');
+$app->post('/send-news/send', 'ControllerSendNews:send')->setName('sendnews-send');

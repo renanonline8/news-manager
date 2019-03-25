@@ -12,6 +12,7 @@ final class ControllerNews extends Controller
 {
     public function list(Request $request, Response $response, Array $args)
     {
+        
         $posts = new GetPosts();
         $twigArr = array('posts' => $posts->getListToArray());
 

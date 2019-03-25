@@ -52,7 +52,10 @@ class __TwigTemplate_27b5d1f69a592ffc737decb1a7c0163e348a05247550d01dda793c9976d
         echo "<h1>Notícias Disponíveis</h1>
 <div class=\"btn-toolbar\" role=\"toolbar\" aria-label=\"\">
     <div class=\"btn-group\" role=\"group\" aria-label=\"\">
-        <button type=\"button\" class=\"btn btn-primary\">Atualizar Lista</button>
+        <a href=\"";
+        // line 5
+        echo twig_escape_filter($this->env, $this->extensions['Slim\Views\TwigExtension']->pathFor("news-list"), "html", null, true);
+        echo "\" class=\"btn btn-primary\">Atualizar Lista</a>
     </div>
 </div>
 <table class=\"table\">
@@ -107,7 +110,7 @@ class __TwigTemplate_27b5d1f69a592ffc737decb1a7c0163e348a05247550d01dda793c9976d
 
     public function getDebugInfo()
     {
-        return array (  93 => 24,  84 => 21,  80 => 20,  76 => 19,  73 => 18,  69 => 17,  52 => 2,  27 => 1,);
+        return array (  96 => 24,  87 => 21,  83 => 20,  79 => 19,  76 => 18,  72 => 17,  57 => 5,  52 => 2,  27 => 1,);
     }
 
     public function getSourceContext()
@@ -116,7 +119,7 @@ class __TwigTemplate_27b5d1f69a592ffc737decb1a7c0163e348a05247550d01dda793c9976d
 <h1>Notícias Disponíveis</h1>
 <div class=\"btn-toolbar\" role=\"toolbar\" aria-label=\"\">
     <div class=\"btn-group\" role=\"group\" aria-label=\"\">
-        <button type=\"button\" class=\"btn btn-primary\">Atualizar Lista</button>
+        <a href=\"{{path_for('news-list')}}\" class=\"btn btn-primary\">Atualizar Lista</a>
     </div>
 </div>
 <table class=\"table\">
